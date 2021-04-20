@@ -1,20 +1,42 @@
+import Link from 'next/link'
+import { formatedEpisodeTime, formatedPublicationDate } from '../../utils/formatEpisodeDetails'
+import { PlayButton } from '../PlayButton'
+
 import styles from './styles.module.scss'
 
-export const Podcast = () => {
+interface EpisodeProps {
+  episode: {
+    id: string;
+    title: string;
+    members: string;
+    thumbnail: string;
+    published_at: string;
+    file: {
+      url: string;
+      type: string;
+      duration: number;
+    }
+  }
+}
+
+export const Podcast = ({ episode }: EpisodeProps) => {
+
   return (
-    <div className={styles.podcast}>
-      <div>
-        <img src="/teste.png" alt="teste"/>
-        <h2>Title</h2>
+    <div className={styles.container}>
+      <div className={styles.podcast}>
+        <Link href="/podcast">
+          <a>
+            <img src={episode.thumbnail} alt={episode.title}/>
+            <h2>{episode.title}</h2>
+          </a>
+        </Link>
+        <p>{episode.members}</p>
+        <p>{formatedPublicationDate(episode.published_at)}</p>
+        <p>{formatedEpisodeTime(episode.file.duration)}</p>
+        <span>
+          <PlayButton />
+        </span>
       </div>
-      <p>Integrantes do podcast</p>
-      <p>8 Jan 2021</p>
-      <p>1:35:28</p>
-      <span>
-        <button type="button">
-          <img src="/play-green.svg" alt="Escutar agora"/>
-        </button>
-      </span>
     </div>
   )
 }

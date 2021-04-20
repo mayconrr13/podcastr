@@ -8,11 +8,13 @@ export const Header = () => {
   
   return (
     <header className={styles.headerContainer}>
-      <img src="/logo.svg" alt="logo"/>
+      <div>
+        <img src="/logo.svg" alt="logo"/>
 
-      <p>O melhor para você ouvir, sempre</p>
+        <p>O melhor para você ouvir, sempre</p>
 
-      <span>{currentDate}</span>
+        <span>{currentDate}</span>
+      </div>
     </header>
   )
 }

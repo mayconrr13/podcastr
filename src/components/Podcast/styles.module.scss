@@ -1,3 +1,8 @@
+.container {
+  width: 100%;
+  border-bottom: 1px solid var(--gray-100);
+}
+
 .podcast {
   display: flex;
   flex-direction: row;
@@ -7,11 +12,16 @@
 
   width: 100%;
 
-  border-bottom: 1px solid var(--gray-100);
+  transition: transform 0.2s;
 
-  > div {
+  &:hover {
+    transform: translateX(1rem);
+  }
+
+  > a {
     display: flex;
     align-items: center;
+    text-decoration: none;
 
     padding-right: 0.5rem;
 
@@ -48,25 +58,5 @@
 
   span  {
     width: 5%;
-
-    button {
-      background: var(---white);
-      width: 2.5rem;
-      height: 2.5rem;
-      
-      border: 1px solid var(--gray-100);
-      border-radius: 0.625rem;
-  
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      margin: 0 auto;
-  
-      img {
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-    }
   }
 }
