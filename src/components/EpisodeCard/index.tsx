@@ -21,8 +21,6 @@ interface EpisodeProps {
 }
 
 export const EpisodeCard = ({ episode }: EpisodeProps) => {
-  
-
   return (
     <div className={styles.podcastCard}>
       <Link href={`/episodes/${episode.id}`}>
@@ -41,7 +39,7 @@ export const EpisodeCard = ({ episode }: EpisodeProps) => {
         </a>
       </Link>
 
-      <PlayButton />
+      <PlayButton episode={episode} />
     </div>
   )
 }

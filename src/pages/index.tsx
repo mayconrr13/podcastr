@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next'
 import { Episode } from '../components/Episode'
 import { EpisodeCard } from '../components/EpisodeCard'
+import { usePlayer } from '../hooks/usePlayer'
 import { api } from '../services/api'
 import styles from '../styles/pages/home.module.scss'
 import { formatedEpisodeTime, formatedPublicationDate } from '../utils/formatEpisodeDetails'
@@ -24,6 +25,7 @@ interface EpisodesListProps {
 }
 
 export default function Home({ lastestEpisodes, allEpisodes }: EpisodesListProps) {
+  const { play } = usePlayer()
   
   return (
     <div className={styles.homeContainer}>

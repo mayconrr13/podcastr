@@ -34,7 +34,7 @@ export const Episode = ({ episode }: EpisodeProps) => {
         <p>{episode.publishedAt}</p>
         <p>{episode.file.duration}</p>
         <span>
-          <PlayButton />
+          <PlayButton episode={episode} />
         </span>
       </div>
     </div>
