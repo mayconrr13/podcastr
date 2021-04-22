@@ -10,7 +10,7 @@ export function formatedEpisodeTime(duration: number): string {
 }
 
 export function formatedPublicationDate (date: string): string {
-  const formatedDate = format(new Date(date), 'EEEEEE, d MMM', { locale: ptBR })
+  const formatedDate = format(new Date(date), 'd MMM yy', { locale: ptBR })
 
   return formatedDate
 }

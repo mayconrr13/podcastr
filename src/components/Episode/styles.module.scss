@@ -30,13 +30,14 @@
     img {
       width: 2.5rem;
       height: 2.5rem;
-      background: var(--gray-300);
+      min-width: 2.5rem;
+      min-height: 2.5rem;
       border-radius: 0.5rem;
-      margin-right: 1rem;
     }
 
     h2 {
       font-size: 1rem;
+      margin-left: 1rem;
     }
 
   }

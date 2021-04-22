@@ -1,16 +1,21 @@
 .headerContainer {
   background: var(--white);
   height: 6.5rem;
+  width: 100%;
+  max-width: calc(100vw - 26.5rem);
+
+  position: fixed;
+  top: 0;
+  left: 0;
     
   border-bottom: 1px solid var(--gray-100);
   
   div {
     display: flex;
     align-items: center;
-    max-width: 888px;
 
     padding: 2rem 0;
-    margin: 0 auto;
+    margin: 0 4rem;
 
     p {
       margin-left: 2rem;
