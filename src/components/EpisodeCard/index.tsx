@@ -4,23 +4,32 @@ import Image from 'next/image'
 import { PlayButton } from '../PlayButton'
 
 import styles from './styles.module.scss'
+import { usePlayer } from '../../hooks/usePlayer'
+import { formatedEpisodeTime } from '../../utils/formatEpisodeDetails'
 
-interface EpisodeProps {
-  episode: {
-    id: string;
-    title: string;
-    members: string;
-    thumbnail: string;
-    publishedAt: string;
-    file: {
-      url: string;
-      type: string;
-      duration: string;
-    }
+interface Episode {
+  id: string;
+  title: string;
+  members: string;
+  thumbnail: string;
+  publishedAt: string;
+  description: string;
+  file: {
+    url: string;
+    type: string;
+    duration: number;
+  }  
+}
+
+interface EpisodeCardProps {
+  episode: Episode;
+  list: {
+    episodeList: Episode[];
+    index: number;
   }
 }
 
-export const EpisodeCard = ({ episode }: EpisodeProps) => {
+export const EpisodeCard = ({ episode, list }: EpisodeCardProps) => {
   return (
     <div className={styles.podcastCard}>
       <Link href={`/episodes/${episode.id}`}>
@@ -33,13 +42,13 @@ export const EpisodeCard = ({ episode }: EpisodeProps) => {
             <div>
               <span>{episode.publishedAt}</span>
               <span />
-              <span>{episode.file.duration}</span>
+              <span>{formatedEpisodeTime(episode.file.duration)}</span>
             </div>
           </div>
         </a>
       </Link>
 
-      <PlayButton episode={episode} />
+      <PlayButton episodes={list} />
     </div>
   )
 }

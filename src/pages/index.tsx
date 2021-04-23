@@ -25,15 +25,17 @@ interface EpisodesListProps {
 }
 
 export default function Home({ lastestEpisodes, allEpisodes }: EpisodesListProps) {
-  const { play } = usePlayer()
+  const { playList } = usePlayer()
+
+  const episodeList = [...lastestEpisodes, ...allEpisodes]
   
   return (
     <div className={styles.homeContainer}>
       <h1>Últimos lançamentos</h1>
 
       <div className={styles.cardsContainer}>
-        {lastestEpisodes.map(episode => {
-          return (<EpisodeCard episode={episode} key={episode.id}/>)
+        {lastestEpisodes.map((episode, index) => {
+          return (<EpisodeCard episode={episode} list={{episodeList , index}} key={episode.id}/>)
         })}
       </div>
 
@@ -48,8 +50,9 @@ export default function Home({ lastestEpisodes, allEpisodes }: EpisodesListProps
       </div>
       
       <div className={styles.podcastsList}>
-        {allEpisodes && allEpisodes.map(episode => {
-          return <Episode episode={episode} key={episode.id}/>
+        {allEpisodes && allEpisodes.map((episode, index) => {
+          const updatedIndex = index + lastestEpisodes.length
+          return <Episode episode={episode} list={{episodeList , updatedIndex}} key={episode.id}/>
         })}
       </div>
 
@@ -73,7 +76,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     file: {
       url: episode.file.url,
       type: episode.file.type,
-      duration: formatedEpisodeTime(episode.file.duration),
+      duration: episode.file.duration,
   }}})
 
   const lastestEpisodes = episodes.slice(0, 2)

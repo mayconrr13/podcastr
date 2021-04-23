@@ -1,10 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
+import Head from 'next/head'
 import Image from 'next/image'
 import { api } from '../../services/api'
 
 import styles from '../../styles/pages/episodes.module.scss'
 import { formatedEpisodeTime, formatedPublicationDate } from '../../utils/formatEpisodeDetails'
+import { usePlayer } from '../../hooks/usePlayer'
 
 interface Episode {
   id: string;
@@ -25,8 +27,14 @@ interface EpisodeProps {
 }
 
 export default function Episode({ episode }: EpisodeProps) {
+  const { play } = usePlayer()
+
   return (
     <div className={styles.container}>
+      <Head>
+        <title>{episode.title}</title>
+      </Head>
+
       <div className={styles.bannerContainer}>
         <Link href="/">
           <a>
@@ -40,7 +48,7 @@ export default function Episode({ episode }: EpisodeProps) {
           height={160}
           objectFit="cover"         
         />
-        <button type="button">
+        <button type="button" onClick={() => play(episode)}>
          <img src="/play.svg" alt="Play"/>  
         </button>
       </div>
@@ -96,7 +104,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     file: {
       url: response.data.file.url,
       type: response.data.file.type,
-      duration: formatedEpisodeTime(response.data.file.duration),
+      duration: response.data.file.duration,
     }
   }
 

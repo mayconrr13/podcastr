@@ -1,25 +1,34 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { formatedEpisodeTime } from '../../utils/formatEpisodeDetails'
 import { PlayButton } from '../PlayButton'
 
 import styles from './styles.module.scss'
 
-interface EpisodeProps {
-  episode: {
-    id: string;
-    title: string;
-    members: string;
-    thumbnail: string;
-    publishedAt: string;
-    file: {
-      url: string;
-      type: string;
-      duration: string;
-    }
+interface Episode {
+  id: string;
+  title: string;
+  members: string;
+  thumbnail: string;
+  publishedAt: string;
+  description: string;
+  file: {
+    url: string;
+    type: string;
+    duration: number;
   }
 }
 
-export const Episode = ({ episode }: EpisodeProps) => {
+interface EpisodeProps {
+  episode: Episode;
+  list: {
+    episodeList: Episode[];
+    updatedIndex: number;
+  }
+}
+
+export const Episode = ({ episode, list }: EpisodeProps) => {
+  const { episodeList, updatedIndex} = list
 
   return (
     <div className={styles.container}>
@@ -32,9 +41,9 @@ export const Episode = ({ episode }: EpisodeProps) => {
         </Link>
         <p>{episode.members}</p>
         <p>{episode.publishedAt}</p>
-        <p>{episode.file.duration}</p>
+        <p>{formatedEpisodeTime(episode.file.duration)}</p>
         <span>
-          <PlayButton episode={episode} />
+          <PlayButton episodes={{episodeList, index: updatedIndex }} />
         </span>
       </div>
     </div>
