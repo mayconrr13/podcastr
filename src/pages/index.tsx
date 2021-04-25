@@ -12,11 +12,12 @@ interface EpisodeProps {
   members: string;
   thumbnail: string;
   publishedAt: string;
+  description: string;
   file: {
     url: string;
     type: string;
-    duration: string;
-  }
+    duration: number;
+  } 
 }
 
 interface EpisodesListProps {

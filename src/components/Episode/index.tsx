@@ -35,7 +35,7 @@ export const Episode = ({ episode, list }: EpisodeProps) => {
       <div className={styles.podcast}>
         <Link href={`/episodes/${episode.id}`}>
           <a>
-            <Image width={120} height={120} src={episode.thumbnail} alt={episode.title} objectFit="cover"/>
+            <img src={episode.thumbnail} alt={episode.title}/>
             <h2>{episode.title}</h2>
           </a>
         </Link>

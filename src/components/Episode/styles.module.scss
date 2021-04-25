@@ -60,4 +60,60 @@
   span  {
     width: 5%;
   }
+
+  @media (max-width: 750px) {
+    display: grid;
+    grid-template-columns: 4rem 1fr 1fr 3rem;
+    grid-template-rows: 4rem 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "link link link link"
+      " none members members members"
+      " none date duration button";
+
+    width: 100%;
+    // max-height: 120px;
+    padding: 1rem 0;
+
+    // margin-bottom:  3rem;
+
+
+    a {
+      width: inherit;
+      grid-area: link;
+
+      img {
+        width: 4rem;
+        height: 4rem;
+
+        width: 100%;
+        max-width: 4rem
+      }
+
+      h2 {
+        width: 100%;
+      }
+    }
+
+    p {
+      &:nth-child(2) {
+        grid-area: members;
+        padding-left: 1rem; 
+        width: 100%;
+      }
+      &:nth-child(3) {
+        padding-left: 1rem; 
+        grid-area: date;
+        width: 100%;
+      }
+      &:nth-child(4) {
+        grid-area: duration;
+        width: 100%;
+      }
+    }
+
+    span {
+      grid-area: button;
+    }
+  }
 }
