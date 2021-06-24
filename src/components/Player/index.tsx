@@ -71,14 +71,14 @@ export const Player = () => {
         <title>Home | Podcastr</title>
       </Head>
 
-      <header>
+      <header className={styles.miniPlayer}>
         <img src="/playing.svg" alt="Tocando agora"/>
-        <strong>Tocando agora: {episode?.title}</strong>
+        <strong>Tocando agora</strong>
       </header>
 
       {episode ? (
         <div className={styles.currentEpisode}>
-          <Image width={592} height={592} src={episode.thumbnail} objectFit="cover" />
+          <img src={episode.thumbnail} />
           <strong>{episode.title}</strong>
           <span>{episode.members}</span>
         </div>
